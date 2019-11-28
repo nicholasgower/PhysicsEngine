@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=PhysicsObject
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ PhysicsObject\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=PhysicsObject()
+comment10.params=other
+comment10.target=void\ addForce(Force)
+comment11.params=
+comment11.target=void\ applyForces()
+comment2.params=position\ mass
+comment2.target=PhysicsObject(Vector,\ double)
+comment3.params=
+comment3.target=Vector\ getPosition()
+comment4.params=
+comment4.target=Vector\ getVelocity()
+comment5.params=
+comment5.target=boolean\ isConstrained()
+comment6.params=
+comment6.target=double\ getMass()
+comment7.params=
+comment7.target=void\ clearForces()
+comment8.params=
+comment8.target=Vector\ getNetForce()
+comment9.params=
+comment9.target=Vector\ getAcceleration()
+numComments=12
