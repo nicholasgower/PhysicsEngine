@@ -20,6 +20,12 @@ public class Vector
         this.y=values[1];
         this.z=values[2];
     }
+    public Vector(Vector in){
+        double[] values=in.toArray();
+        this.x=values[0];
+        this.y=values[1];
+        this.z=values[2];
+    }
     public Vector(double x,double y,double z){
         this.x=x;
         this.y=y;
@@ -165,6 +171,11 @@ public class Vector
     }
     public boolean equals(Vector other){
         return (this.getX()==other.getX() && this.getY()==other.getY() && this.getZ()==other.getZ());
+    }
+    public void set(double x,double y,double z){
+    setX(x);
+    setY(y);
+    setZ(z);
     }
     
     

@@ -1,11 +1,15 @@
 #BlueJ class context
 comment0.target=Force
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Force\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=origin\ value
-comment1.target=Force(Vector,\ Vector)
+comment1.params=value\ source\ appliedTo
+comment1.target=Force(Vector,\ PhysicsObject,\ PhysicsObject)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Force\r\n
 comment2.params=
-comment2.target=Vector\ getValue()
+comment2.target=Force()
 comment3.params=
-comment3.target=Vector\ getOrigin()
-numComments=4
+comment3.target=Force\ getNegative()
+comment4.params=
+comment4.target=Vector\ getValue()
+comment5.params=
+comment5.target=Vector\ getOrigin()
+numComments=6

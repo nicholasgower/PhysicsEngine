@@ -17,15 +17,21 @@ public class Force
     /**
      * Constructor for objects of class Force
      */
-    public Force(Vector origin,Vector value)
+    public Force(Vector value,PhysicsObject source,PhysicsObject appliedTo)
     {
         // initialise instance variables
         this.value=value;
         this.origin=origin;
     }
+    public Force()
+    {
+        
+        //Non-existent force
+    }
     
-    
-    
+    public Force getNegative(){
+        return new Force(this.value.getNegative(),this.source,this.appliedTo);
+    }
     public Vector getValue(){
         return this.value;
     }
