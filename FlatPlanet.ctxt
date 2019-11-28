@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=FlatPlanet
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ FlatPlanet\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=FlatPlanet()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ FlatPlanet\r\n
+comment2.params=other
+comment2.target=Force\ getStandardGravity(PhysicsObject)
+comment3.params=point
+comment3.target=boolean\ isInsideOf(Vector)
+numComments=4

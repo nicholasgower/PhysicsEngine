@@ -21,6 +21,8 @@ public class Force
     {
         // initialise instance variables
         this.value=value;
+        this.source=source;
+        this.appliedTo=appliedTo;
         this.origin=origin;
     }
     public Force()
@@ -37,6 +39,12 @@ public class Force
     }
     public Vector getOrigin(){
         return this.origin;
+    }
+    public PhysicsObject getSource(){
+        return this.source;
+    }
+    public PhysicsObject getAppliedTo(){
+        return this.appliedTo;
     }
 
     /**

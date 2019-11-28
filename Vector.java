@@ -116,6 +116,10 @@ public class Vector
         return this.getSum(other.getNegative()).getMagnitude();
         
     }
+    public double distanceBetween(Vector other){
+        return distanceTo(other);
+        
+    }
     public double getMagnitude(){
         double[] array=this.toArray();
         double sum=0;

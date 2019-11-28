@@ -17,7 +17,7 @@ public class PhysicsObject
     Force[] forces=new Force[64]; //All forces acting on object at this moment.
     double mass=0; //Mass of this object only. Use getMass() when doing calculations.
     double time; //Internal clock
-    
+    Vector standardGravity=new Vector(0,0,0);
     //3d rotation is complicated. It will come later.
     //Vector angle=new Vector();
     //double roll=0;
@@ -32,13 +32,22 @@ public class PhysicsObject
         return this.position;
     }
     public Vector getAbsPosition(){
-    Vector absPos=new Vector(this.getPosition());
+        Vector absPos=new Vector(this.getPosition());
+        PhysicsObject currentParent=this.getParent();
+        while (! (currentParent instanceof Universe)){
+            absPos.addVector(currentParent.getPosition());
+            currentParent=currentParent.parent;
+        }
+        return absPos;
+    }   
+    public Vector getAbsVelocity(){
+    Vector absVel=new Vector(this.getVelocity());
     PhysicsObject currentParent=this.getParent();
     while (! (currentParent instanceof Universe)){
-        absPos.addVector(currentParent.getPosition());
+        absVel.addVector(currentParent.getVelocity());
         currentParent=currentParent.parent;
     }
-    return absPos;
+    return absVel;
     }
     public Vector getVelocity(){
         if (constrained){
@@ -100,17 +109,21 @@ public class PhysicsObject
     }
     
     public Force getGravity(){ //Gravity from parent to child
+        //return new Force(new Vector(0,0,-9.80665));
+        
         return new Force();
-        
-        
     }
-    public Force getGravity(PhysicsObject other){ //Gravity between two objects
-        //double G= 6.674*Math.pow(10,-11); //Gravitational constant
-        //PhysicsObject selfParent=this.parent;
-        //Vector selfAb
-        //PhysicsObject otherParent=this.parent;
-        //while( 
-        return getGravity();
+    public Force getStandardGravity(PhysicsObject other){
+        return new Force();
+    }
+    public Force getGravity(PhysicsObject other){ //Gravity from this object to other
+        if (other instanceof FlatPlanet){
+            return other.getStandardGravity(this);
+        }
+        double G= 6.674*Math.pow(10,-11); //Gravitational constant
+        Vector distance=this.getAbsPosition().getDifference(other.getAbsPosition());
+        Vector F=(distance.getUnitVector()).getProduct((G*this.getMass()*other.getMass())/(Math.pow(distance.getMagnitude(),2))); 
+        return new Force(F,this,other);
     }
     
     public void giveForce(Force force){ //Apply force to only this object

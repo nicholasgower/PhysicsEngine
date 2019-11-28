@@ -8,15 +8,24 @@
 public class FlatPlanet extends PhysicsObject
 {
     // instance variables - replace the example below with your own
-    
+    Vector standardGravity=new Vector(0,0,-9.80665);
 
     /**
      * Constructor for objects of class FlatPlanet
      */
     public FlatPlanet()
     {
-        // initialise instance variables
-        x = 0;
+        super();
+    }
+    public Force getStandardGravity(PhysicsObject other){
+        Vector g=standardGravity;
+        g.multiplyScalar(other.getMass());
+        return new Force(g,this,other);
+        
+    }
+    public boolean isInsideOf(Vector point){
+     //The flat planet's hitbox extends infinitely below the z=0 plane.
+     return (point.getZ()<0);
     }
 
     /**
@@ -25,9 +34,5 @@ public class FlatPlanet extends PhysicsObject
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+    
 }
