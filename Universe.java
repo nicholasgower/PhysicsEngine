@@ -1,4 +1,6 @@
 
+
+import java.util.ArrayList;
 /**
  * Write a description of class Universe here.
  *
@@ -7,7 +9,7 @@
  */
 public class Universe extends PhysicsObject
 {
-    public Universe(PhysicsObject[] children){
+    public Universe(ArrayList<PhysicsObject> children){
     this.mass=0;
     this.children=children;
     this.parent=null; //This is the ultimate object; all objects are ultimately the parent to this object.
@@ -22,6 +24,7 @@ public class Universe extends PhysicsObject
     public Vector getNetForce(){
         return new Vector();
     }
+  
     public PhysicsObject getParent(){
     return null;    
     }

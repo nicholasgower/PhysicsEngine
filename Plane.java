@@ -20,9 +20,7 @@ public class Plane
         this.vec1=vec1;
         this.vec2=vec2;
     }
-    public double getValue(double x, double y){
-        
-    }
+    
     public Plane(){
         this.vec1=new Vector(1,0,0);
         this.vec2=new Vector(0,1,0);

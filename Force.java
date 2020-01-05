@@ -1,3 +1,5 @@
+ 
+
 
 /**
  * Write a description of class Force here.
@@ -7,23 +9,20 @@
  */
 public class Force
 {
-    // instance variables - replace the example below with your own
-    PhysicsObject source; //From who this force came from
-    PhysicsObject appliedTo; //To whom this force applies to
+   
     
     Vector value=new Vector();
     Vector origin=new Vector(); //Where force is applied-- Important to rotation, but not to linear movement
-
+    
     /**
      * Constructor for objects of class Force
      */
-    public Force(Vector value,PhysicsObject source,PhysicsObject appliedTo)
+    public Force(Vector value,Vector origin)
     {
         // initialise instance variables
         this.value=value;
-        this.source=source;
-        this.appliedTo=appliedTo;
         this.origin=origin;
+        
     }
     public Force()
     {
@@ -32,7 +31,7 @@ public class Force
     }
     
     public Force getNegative(){
-        return new Force(this.value.getNegative(),this.source,this.appliedTo);
+        return new Force(this.value.getNegative(),this.getOrigin());
     }
     public Vector getValue(){
         return this.value;
@@ -40,12 +39,7 @@ public class Force
     public Vector getOrigin(){
         return this.origin;
     }
-    public PhysicsObject getSource(){
-        return this.source;
-    }
-    public PhysicsObject getAppliedTo(){
-        return this.appliedTo;
-    }
+    
 
     /**
      * An example of a method - replace this comment with your own

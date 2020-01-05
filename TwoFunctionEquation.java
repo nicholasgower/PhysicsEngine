@@ -10,7 +10,7 @@ public class TwoFunctionEquation
 {
     // instance variables - replace the example below with your own
     private int x;
-    Expression F=new Expression("1+2")
+    Expression F=new Expression("1+2");
     /**
      * Constructor for objects of class TwoFunctionEquation
      */
