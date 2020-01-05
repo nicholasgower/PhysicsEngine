@@ -19,8 +19,8 @@ public class FlatPlanet extends PhysicsObject
     }
     public Force getStandardGravity(PhysicsObject other){
         Vector g=standardGravity;
-        g.multiplyScalar(other.getMass());
-        return new Force(g,this.getPosition());
+        
+        return new Force(g.getProduct(other.getMass()),this.getPosition());
         
     }
     public boolean isInsideOf(Vector point){

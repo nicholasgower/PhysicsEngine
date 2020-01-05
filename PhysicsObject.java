@@ -80,6 +80,7 @@ public class PhysicsObject
         child.addParent(this);
         this.children.add(child);
     }
+    
     public boolean isConstrained(){
         return constrained;
     }
@@ -107,8 +108,8 @@ public class PhysicsObject
         }
         return this.mass+childrenMass;
     }
-    public Vector getAirResistance(){
-        return new Vector();
+    public Force getAirResistance(){
+        return new Force();
     }
     public double getMomentofInertia(){
         return 0;
@@ -144,10 +145,23 @@ public class PhysicsObject
         Vector F=(distance.getUnitVector()).getProduct((G*this.getMass()*other.getMass())/(Math.pow(distance.getMagnitude(),2))); 
         return new Force(F,this.getPosition());
     }
+    public void addGravity(){
+        if (parent instanceof FlatPlanet){
+            addForce(parent.getStandardGravity(this));
+        }else{
+            addForce(getGravity(parent),parent);
+        }
+    }
+    public void addForce(Force force){
+        forces.add(force);
+    }
     public void giveForce(Force force){ //Apply force to only this object
         forces.add(force);
     }
-    
+    public void addForce(Force force,PhysicsObject other){ //Apply force to this object and opposite force to other object(Newton's Third Law)
+        this.giveForce(force);
+        other.giveForce(force.getNegative());
+    }
     public void giveForce(Force force,PhysicsObject other){ //Apply force to this object and opposite force to other object(Newton's Third Law)
         this.giveForce(force);
         other.giveForce(force.getNegative());
@@ -159,15 +173,16 @@ public class PhysicsObject
         
         applyChanges();
         for (int i=0;i<children.size();i++){
-            children.get(i).applyChanges();
+            children.get(i).update();
         }
     }
     public void applyChanges(){
-        
-        getPosition().addVector(getVelocity().getQuotient(parent.getTime()-this.getTime()));
-        getVelocity().addVector(getAcceleration().getQuotient(parent.getTime()-this.getTime()));
+        if (! (this instanceof Universe) && parent.getTime()-this.getTime()!=0){
+        position.addVector(getVelocity().getProduct(parent.getTime()-this.getTime()));
+        velocity.addVector(getAcceleration().getProduct(parent.getTime()-this.getTime()));
         this.time=parent.getTime();
         clearForces();
+    }
         
     }
     

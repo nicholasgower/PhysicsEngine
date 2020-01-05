@@ -39,6 +39,9 @@ public class Force
     public Vector getOrigin(){
         return this.origin;
     }
+    public String toString(){
+        return String.format("%s from %s",value,origin);
+    }
     
 
     /**

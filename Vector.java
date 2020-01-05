@@ -123,16 +123,27 @@ public class Vector
         
     }
     public double getMagnitude(){
-        double[] array=this.toArray();
+       
         double sum=0;
+        /*double[] array=this.toArray();
         for(int i=0;i<array.length;i++){
             sum+=Math.pow(array[i],2);
             
-        }
+        }*/
+        sum+=Math.pow(getX(),2);
+        sum+=Math.pow(getY(),2);
+        sum+=Math.pow(getZ(),2);
+        //System.out.println(sum);
         return Math.sqrt(sum);
     }
     public Vector getUnitVector(){
-        return getQuotient(getMagnitude());
+        //System.out.println("Unit Vector called");
+        double magnitude=getMagnitude();
+        if (magnitude==0){
+            return new Vector();
+        }else{
+        return this.getProduct(1.0/getMagnitude());
+    }
     }
     public double dotProduct(Vector other){
        double[] _this=this.toArray();
